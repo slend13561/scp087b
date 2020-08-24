@@ -71,7 +71,7 @@ camera = CreateCamera()
 CameraRange camera, 0.001, 100
 CameraFogMode camera, 1
 CameraFogRange camera, 1, 2.5
-CameraFogColor camera,0,0,0
+CameraFogColor camera,0,5,0
 microphone=CreateListener(camera) ; Create listener, make it child of camera
 
 Global BlurTimer, Brightness=max(min(GetINIInt("options.ini","options","brightness"),255),0)
@@ -216,7 +216,7 @@ While Not KeyDown(1)
 	EndIf
 		
 	If CollidedFloor = True Then
-		If dropspeed# < -0.09 Then KillTimer = max(1,KillTimer)
+		If dropspeed# < -0.09 Then KillTimer = Max(1,KillTimer)
 		dropspeed# = 0
 	Else
 		dropspeed# = dropspeed-0.004
@@ -241,7 +241,7 @@ While Not KeyDown(1)
 		EndIf		
 	EndIf
 	
-	BlurTimer = max(BlurTimer-1,0)
+	BlurTimer = Max(BlurTimer-1,0)
 	
 	MouseLook()
 	
@@ -765,7 +765,7 @@ Function UpdateFloors()
 						If FloorTimer(i) >100 Then
 							Animate2(CurrEnemy\obj,AnimTime(CurrEnemy\obj),1,14,0.15)	
 							If Distance2(EntityX(CurrEnemy\collider),EntityY(CurrEnemy\collider),EntityZ(CurrEnemy\collider))<0.8 Then
-								KillTimer = max(KillTimer,1)
+								KillTimer = Max(KillTimer,1)
 							EndIf
 						EndIf
 						
@@ -787,7 +787,7 @@ Function UpdateFloors()
 						
 						If FloorTimer(i) >100 Then
 							If Distance2(EntityX(CurrEnemy\collider),EntityY(CurrEnemy\collider),EntityZ(CurrEnemy\collider))<0.8 Then
-								KillTimer = max(KillTimer,1)
+								KillTimer = Max(KillTimer,1)
 							EndIf
 						EndIf
 						
@@ -825,7 +825,7 @@ Function UpdateFloors()
 							Else
 								CurrEnemy\speed = 0.02
 								If Distance2(EntityX(CurrEnemy\collider),EntityY(CurrEnemy\collider),EntityZ(CurrEnemy\collider))<0.8 Then
-									KillTimer = max(KillTimer,1)
+									KillTimer = Max(KillTimer,1)
 									
 									FloorTimer(i)=0
 								EndIf
@@ -848,7 +848,7 @@ Function UpdateFloors()
 						DebugLog  FloorTimer(i)
 						FloorTimer(i) = FloorTimer(i) +1
 						If Distance2(EntityX(CurrEnemy\collider),EntityY(CurrEnemy\collider),EntityZ(CurrEnemy\collider))<0.8 Then
-							KillTimer = max(KillTimer,1)
+							KillTimer = Max(KillTimer,1)
 						EndIf	
 						If FloorTimer(i) = 500 Then
 							FreeEntity CurrObject
@@ -1046,7 +1046,7 @@ Function UpdateFloors()
 					EndIf
 				Else
 					If Distance2(EntityX(CurrEnemy\collider),EntityY(CurrEnemy\collider),EntityZ(CurrEnemy\collider))<0.8 Then
-						KillTimer = max(KillTimer,1)
+						KillTimer = Max(KillTimer,1)
 					EndIf
 				EndIf 
 			Case ACT_TRICK2
@@ -1070,7 +1070,7 @@ Function UpdateFloors()
 					EndIf		
 				Else
 					If Distance2(EntityX(CurrEnemy\collider),EntityY(CurrEnemy\collider),EntityZ(CurrEnemy\collider))<0.8 Then
-						KillTimer = max(KillTimer,1)
+						KillTimer = Max(KillTimer,1)
 					EndIf	
 				EndIf
 			Case ACT_TRAP
@@ -1137,7 +1137,7 @@ Function UpdateFloors()
 					EndIf		
 				ElseIf FloorTimer(PlayerFloor)<600
 					FloorTimer(PlayerFloor) = FloorTimer(PlayerFloor)+1
-					temp#=max(Brightness-(FloorTimer(PlayerFloor)/600.0)*Brightness,10)
+					temp#=Max(Brightness-(FloorTimer(PlayerFloor)/600.0)*Brightness,10)
 					AmbientLight temp,temp,temp
 					
 					If FloorTimer(PlayerFloor) = 600 Then
@@ -1148,7 +1148,7 @@ Function UpdateFloors()
 					EndIf
 				Else
 					If Distance2(EntityX(CurrEnemy\collider),EntityY(CurrEnemy\collider),EntityZ(CurrEnemy\collider))<0.7 Then
-						KillTimer = max(KillTimer,1)
+						KillTimer = Max(KillTimer,1)
 					EndIf
 				EndIf
 		End Select
@@ -1197,7 +1197,7 @@ Function GetINIString$(file$, section$, parameter$)
 		If Lower(ReadLine(f)) = "[" + Lower(section) + "]" Then
 			Repeat
 				TemporaryString = ReadLine(f)
-			 	If Lower(Trim(Left(TemporaryString, max(Instr(TemporaryString, "=") - 1, 0)))) = Lower(parameter) Then
+			 	If Lower(Trim(Left(TemporaryString, Max(Instr(TemporaryString, "=") - 1, 0)))) = Lower(parameter) Then
 					CloseFile f
 					Return Trim( Right(TemporaryString,Len(TemporaryString)-Instr(TemporaryString,"=")) )
 				EndIf
@@ -1264,5 +1264,5 @@ End Function
 
 
 ;~IDEal Editor Parameters:
-;~F#136#13A#13E#142#16E#193#1B1#1C7#1E4#2D2#30D#31B#4BF#4C6#4E0
+;~F#136
 ;~C#Blitz3D
